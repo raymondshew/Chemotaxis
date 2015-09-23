@@ -1,10 +1,26 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class Chemotaxis extends PApplet {
+
 double ranNum;
 
 Bacteria bob;
 Bacteria [] colony;
 
 //declare bacteria variables here   
- void setup()   
+ public void setup()   
  {     
  	//initialize bacteria variables here
  	background(250);
@@ -23,7 +39,7 @@ Bacteria [] colony;
 
 
  }   
- void draw()   
+ public void draw()   
  {    
  	//move and show the bacteria
  	background(250);
@@ -51,7 +67,7 @@ class Bacteria
 		myColor=color(0,0,0);
 		ranNum=0;
 	}   
-	void walk()
+	public void walk()
 	{
 	//	myX= myX+ (int)(Math.random()*3)-1;
 	//	myY= myY+ (int)(Math.random()*3)-1;
@@ -74,16 +90,16 @@ class Bacteria
    	}
   }
 	
-	void show()
+	public void show()
 	{
 		strokeWeight(10);
 		if(myX<250){
 		ranNum=Math.random();
-		if(ranNum<=.35){
+		if(ranNum<=.35f){
 			myColor=color(255,0,0);
 
 		}
-		else if(ranNum<=.65){
+		else if(ranNum<=.65f){
 			myColor=color(0,255,0);
 		}
 		else
@@ -97,3 +113,12 @@ class Bacteria
  		point(myX,myY);
 	}
   }
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "Chemotaxis" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
+}
